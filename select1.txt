@@ -1,0 +1,36 @@
+package com.Amir;
+import java.sql.*;
+import java.util.Scanner;
+
+public class InsertDemo3 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter Id: ");
+		int id =sc.nextInt();
+	/*	System.out.print("Enter Name: ");
+		String name = sc.next();
+		System.out.print("Enter Salary: ");
+		int salary = sc.nextInt();*/
+		try{
+			Class.forName("oracle.jdbc.OracleDriver");
+			String url="jdbc:oracle:thin:@localhost:1521/xe";
+			Connection con= DriverManager.getConnection(url,"babu","babu");
+			String sql="Select * from emp where id=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			System.out.println(rs.getInt(1)+"  "+rs.getString(2)+" "+rs.getInt(3));
+			con.close();
+			System.out.println("Done");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		// TODO Auto-generated method stub
+
+	}
+
+}

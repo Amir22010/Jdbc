@@ -1,0 +1,25 @@
+package com.Amir;
+import java.sql.*;
+
+public class InsertDemo {
+
+	public static void main(String[] args) {
+		try{
+			Class.forName("oracle.jdbc.OracleDriver");
+			String url="jdbc:oracle:thin:@localhost:1521/xe";
+			Connection con= DriverManager.getConnection(url,"babu","babu");
+			Statement stmt= con.createStatement();
+			String sql="Insert into emp values(1,'Amir',30000)";
+			stmt.executeUpdate(sql);
+			con.close();
+			System.out.println("Record Inserted");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		// TODO Auto-generated method stub
+
+	}
+
+}
